@@ -1,0 +1,9 @@
+@use "./../base.scss";
+
+.Date--holiday {
+  fill: $svg-holiday-color;
+}
+
+.Date--workday {
+  fill: $svg-base-color;
+}

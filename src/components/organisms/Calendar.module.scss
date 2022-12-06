@@ -1,0 +1,36 @@
+@import "../base.scss";
+
+.year {
+  font-size: $svg-year-fontsize;
+  color: $svg-base-color;
+}
+
+.month {
+  font-size: $svg-month-fontsize;
+  color: $svg-base-color;
+}
+
+.oldMonth {
+  font-size: $svg-oldmonth-fontsize;
+  color: $svg-base-color;
+}
+
+.weekday {
+  font-size: $svg-weekday-fontsize;
+  color: $svg-frame-color;
+}
+
+.label {
+  font-size: $svg-label-fontsize;
+  color: $svg-label-color;
+}
+
+.workday {
+  font-size: $svg-date-fontsize;
+  color: $svg-base-color;
+}
+
+.holiday {
+  font-size: $svg-date-fontsize;
+  color: $svg-holiday-color;
+}

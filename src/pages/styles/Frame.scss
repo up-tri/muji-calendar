@@ -1,0 +1,18 @@
+@page {
+  // auto is the initial value
+  size: atuo;
+  margin: 24px;
+  @top-left {
+    content: normal;
+  }
+  @bottom-center {
+    content: element(footer);
+  }
+}
+
+.weight--thin {
+  font-family: "HiraginoSans-W2-83pv-RKSJ-H";
+}
+.weight--normal {
+  font-family: "HiraginoSans-W5-83pv-RKSJ-H";
+}
