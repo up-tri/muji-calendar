@@ -4,31 +4,59 @@ import { Paper } from "../components/organisms/Paper";
 import { PreviewNote } from "../components/organisms/PreviewNote";
 import { PaperTemplate } from "../components/templates/PaperTemplate";
 import { getOldMonth } from "../lib/oldMonth";
+import { months as defaultMonths } from "../lib/types/Month";
 import { getYear } from "../lib/year";
 
 export default function CalendarPage() {
   const router = useRouter();
 
-  const { year } = router.query;
+  const { year, months } = router.query;
 
   if (!year) {
     return <p>レンダリング中...</p>;
   }
 
-  console.log({ year, "router.query": router.query });
+  const needMonths = (() => {
+    if (months === undefined) return defaultMonths;
+
+    const m = Array.isArray(months) ? months : months.split(",");
+    const mm = m
+      .map((month) => parseInt(month))
+      .filter((month) => month !== NaN && 0 < month && month < 13);
+    return mm.length !== 0 ? mm : defaultMonths;
+  })();
+
   const yearAsNumber = parseInt(`${year}`);
-  console.log(yearAsNumber);
-  if (yearAsNumber < 0 || year === "" || year?.includes(".")) {
-    router.replace("/400", undefined, { shallow: false });
+  if (
+    yearAsNumber < 0 ||
+    yearAsNumber === NaN ||
+    year === "" ||
+    year?.includes(".")
+  ) {
+    router.replace("/400.html", undefined, { shallow: false });
   }
 
-  console.log({ yearAsNumber });
-  const yearTables = getYear(yearAsNumber);
+  const yearTables = getYear(yearAsNumber, needMonths);
 
   return (
     <PaperTemplate title={`${yearAsNumber}年のカレンダー`}>
       <PreviewNote>
-        <p>aaa</p>
+        <p>
+          ブラウザからこのページを印刷すると、{needMonths.length}
+          枚のカレンダーになります。
+        </p>
+        <p>右クリック→【印刷】で印刷画面が開きます。</p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          style={{
+            display: "block",
+            width: "400px",
+            margin: "10px 0 0 0",
+            border: "1px solid #808080",
+          }}
+          src='/images/print_menu.png'
+          alt='印刷メニュー'
+        />
       </PreviewNote>
       {yearTables.months.map((month, idx) => (
         <Paper key={idx}>

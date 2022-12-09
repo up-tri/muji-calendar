@@ -5,9 +5,15 @@ export type Year = {
   year: number;
   months: Month[];
 };
-export const getYear = (year: number): Year => {
+export const getYear = (year: number, includesMonths: number[]): Year => {
   return {
     year,
-    months: months.map((m) => getMonth(year, m)),
+    months: months
+      .map((m) => getMonth(year, m))
+      .filter((m) =>
+        includesMonths && includesMonths.length !== 0
+          ? includesMonths.includes(m.month)
+          : true
+      ),
   };
 };
