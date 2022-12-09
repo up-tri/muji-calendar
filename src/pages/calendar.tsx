@@ -24,7 +24,7 @@ export default function CalendarPage() {
   const yearTables = getYear(yearAsNumber);
 
   return (
-    <PaperTemplate>
+    <PaperTemplate title={`${yearAsNumber}年のカレンダー`}>
       {yearTables.months.map((month, idx) => (
         <Calendar
           key={idx}

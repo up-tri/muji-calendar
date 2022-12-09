@@ -2,11 +2,17 @@ import Head from "next/head";
 import React from "react";
 
 type PaperTemplateProps = {
+  title: string;
   children: React.ReactNode;
 };
-export const PaperTemplate: React.FC<PaperTemplateProps> = ({ children }) => (
+export const PaperTemplate: React.FC<PaperTemplateProps> = ({
+  title,
+  children,
+}) => (
   <>
-    <Head>{/*  */}</Head>
+    <Head>
+      <title>{title}</title>
+    </Head>
     <div>{children}</div>
   </>
 );

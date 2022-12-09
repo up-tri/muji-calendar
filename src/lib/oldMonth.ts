@@ -1,4 +1,4 @@
-import { Months } from "./month";
+import { Months } from "./types/Month";
 
 const OLD_MONTHS: {
   [key in Months]: { ja: string; en: string };
