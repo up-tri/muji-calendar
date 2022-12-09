@@ -1,7 +1,7 @@
-import { Months } from "./types/Month";
+import { MonthNumber } from "./types/Month";
 
 const OLD_MONTHS: {
-  [key in Months]: { ja: string; en: string };
+  [key in MonthNumber]: { ja: string; en: string };
 } = {
   "1": { ja: "睦月", en: "January" },
   "2": { ja: "如月", en: "February" },
@@ -17,6 +17,6 @@ const OLD_MONTHS: {
   "12": { ja: "師走", en: "December" },
 };
 
-export const getOldMonth = (month: Months): { ja: string; en: string } => {
+export const getOldMonth = (month: MonthNumber): { ja: string; en: string } => {
   return OLD_MONTHS[month];
 };

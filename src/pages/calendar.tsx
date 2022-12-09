@@ -20,19 +20,12 @@ export default function CalendarPage() {
     if (months === undefined) return defaultMonths;
 
     const m = Array.isArray(months) ? months : months.split(",");
-    const mm = m
-      .map((month) => parseInt(month))
-      .filter((month) => month !== NaN && 0 < month && month < 13);
+    const mm = m.map((month) => parseInt(month));
     return mm.length !== 0 ? mm : defaultMonths;
   })();
 
   const yearAsNumber = parseInt(`${year}`);
-  if (
-    yearAsNumber < 0 ||
-    yearAsNumber === NaN ||
-    year === "" ||
-    year?.includes(".")
-  ) {
+  if (yearAsNumber < 0 || year === "" || year?.includes(".")) {
     router.replace("/400.html", undefined, { shallow: false });
   }
 

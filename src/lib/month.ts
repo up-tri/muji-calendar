@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { suggestHoliday } from "./suggestHoliday";
 import { WeekDay } from "./types/Day";
-import { Month, Months } from "./types/Month";
+import { Month, MonthNumber } from "./types/Month";
 
 const getWeekDays = (): WeekDay[] => [
   { label: "SUN", position: 0, isHoliday: true },
@@ -13,7 +13,7 @@ const getWeekDays = (): WeekDay[] => [
   { label: "SAT", position: 6, isHoliday: false },
 ];
 
-export const getMonth = (year: number, month: Months): Month => {
+export const getMonth = (year: number, month: MonthNumber): Month => {
   const monthTable: Month = {
     header: getWeekDays(),
     month,

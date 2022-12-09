@@ -1,6 +1,6 @@
 import React from "react";
 import { Day } from "../../lib/types/Day";
-import { Months } from "../../lib/types/Month";
+import { MonthNumber } from "../../lib/types/Month";
 import { SvgDate } from "../svg/Date";
 import { Frame } from "../svg/Frame";
 import { Group } from "../svg/Group";
@@ -11,7 +11,7 @@ import { Year } from "../svg/Year";
 
 export type CalendarProps = {
   year: number;
-  month: Months;
+  month: MonthNumber;
   oldMonth: string;
   dates: Day[];
 };
