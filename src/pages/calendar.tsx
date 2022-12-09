@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { Calendar } from "../components/organisms/Calendar";
+import { Paper } from "../components/organisms/Paper";
+import { PreviewNote } from "../components/organisms/PreviewNote";
 import { PaperTemplate } from "../components/templates/PaperTemplate";
 import { getOldMonth } from "../lib/oldMonth";
 import { getYear } from "../lib/year";
@@ -25,16 +27,20 @@ export default function CalendarPage() {
 
   return (
     <PaperTemplate title={`${yearAsNumber}年のカレンダー`}>
+      <PreviewNote>
+        <p>aaa</p>
+      </PreviewNote>
       {yearTables.months.map((month, idx) => (
-        <Calendar
-          key={idx}
-          year={yearAsNumber}
-          month={month.month}
-          oldMonth={`${getOldMonth(month.month).en}（${
-            getOldMonth(month.month).ja
-          }）`}
-          dates={month.days}
-        />
+        <Paper key={idx}>
+          <Calendar
+            year={yearAsNumber}
+            month={month.month}
+            oldMonth={`${getOldMonth(month.month).en}（${
+              getOldMonth(month.month).ja
+            }）`}
+            dates={month.days}
+          />
+        </Paper>
       ))}
     </PaperTemplate>
   );

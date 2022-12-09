@@ -4,6 +4,7 @@
   @include base.text-normal;
   font-size: base.$svg-date-fontsize;
   text-align: right;
+  letter-spacing: -0.05em;
 
   &--holiday {
     fill: base.$svg-holiday-color;

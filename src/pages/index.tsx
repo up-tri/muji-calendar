@@ -1,15 +1,4 @@
-import {
-  Box,
-  Button,
-  Input,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverTrigger,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Card, CardBody, Input, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Footer } from "../components/organisms/Footer";
@@ -28,45 +17,44 @@ export default function Home() {
         </Text>
       </Box>
       <Box flex='1' marginY='30px' fontSize='md' textAlign='center'>
-        <Popover>
-          <PopoverTrigger>
-            <Input
-              htmlSize={4}
-              width='auto'
-              type='number'
-              min='0'
-              step='1'
-              marginRight='4px'
-              placeholder='2022'
-              onChange={(event) => {
-                setYear(parseInt(event.target.value));
-              }}
-            />
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <PopoverBody>
-              <Box paddingX='14px'>
-                有効な「年」を半角数字で
-                <br />
-                入力してください。
-              </Box>
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
+        <Input
+          htmlSize={4}
+          width='auto'
+          type='number'
+          min='0'
+          step='1'
+          marginRight='4px'
+          placeholder='2022'
+          onChange={(event) => {
+            setYear(parseInt(event.target.value));
+          }}
+        />
         年のカレンダーを
         <Button
           marginLeft='4px'
           colorScheme='teal'
           size='lg'
-          disabled={year === undefined || year <= 0}
+          disabled={year === undefined || !/^[0-9]{4}$/.test(`${year}`)}
           onClick={() => {
             router.push(`/calendar?year=${year}`, undefined);
           }}
         >
           生成する！
         </Button>
+      </Box>
+      <Box
+        flex='1'
+        width='container.sm'
+        marginX='auto'
+        marginY='30px'
+        fontSize='md'
+        textAlign='center'
+      >
+        <Card variant='filled'>
+          <CardBody>
+            <Text>有効な「年」を半角数字で入力してください。</Text>
+          </CardBody>
+        </Card>
       </Box>
     </RootTemplate>
   );

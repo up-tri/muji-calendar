@@ -13,6 +13,7 @@ export const RootTemplate: React.FC<RootTemplateProps> = ({
 }) => (
   <ChakraProvider>
     <Flex
+      backgroundColor='gray.50'
       minHeight='100vh'
       width='100vw'
       direction='column'

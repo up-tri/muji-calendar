@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import styles from "./PaperTemplate.module.scss";
 
 type PaperTemplateProps = {
   title: string;
@@ -13,6 +14,6 @@ export const PaperTemplate: React.FC<PaperTemplateProps> = ({
     <Head>
       <title>{title}</title>
     </Head>
-    <div>{children}</div>
+    <div className={styles.PaperTemplate}>{children}</div>
   </>
 );
