@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React from "react";
+import { consts } from "../../lib/app/consts";
 import styles from "./PaperTemplate.module.scss";
 
 type PaperTemplateProps = {
@@ -12,7 +13,9 @@ export const PaperTemplate: React.FC<PaperTemplateProps> = ({
 }) => (
   <>
     <Head>
-      <title>{title}</title>
+      <title>
+        {title} - {consts.AppName}
+      </title>
     </Head>
     <div className={styles.PaperTemplate}>{children}</div>
   </>
