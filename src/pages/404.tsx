@@ -8,7 +8,10 @@ export default function Error400() {
   const router = useRouter();
 
   return (
-    <RootTemplate header={<Header />} footer={<Footer />}>
+    <RootTemplate
+      header={<Header pageTitle='ページが見つかりません' />}
+      footer={<Footer />}
+    >
       <Box marginTop='50px'>
         <Text fontSize='md' textAlign='center' fontWeight='bold'>
           ページが見つかりません。
