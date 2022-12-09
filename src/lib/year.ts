@@ -1,4 +1,5 @@
-import { getMonth, Month } from "./month";
+import { getMonth } from "./month";
+import { Month, months } from "./types/Month";
 
 export type Year = {
   year: number;
@@ -7,8 +8,6 @@ export type Year = {
 export const getYear = (year: number): Year => {
   return {
     year,
-    months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((m) =>
-      getMonth(year, m)
-    ),
+    months: months.map((m) => getMonth(year, m)),
   };
 };

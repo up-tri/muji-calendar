@@ -33,7 +33,7 @@ export default function CalendarPage() {
           oldMonth={`${getOldMonth(month.month).en}（${
             getOldMonth(month.month).ja
           }）`}
-          dates={[]}
+          dates={month.days}
         />
       ))}
     </PaperTemplate>

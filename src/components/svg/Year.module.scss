@@ -1,0 +1,6 @@
+@use "./../base";
+
+.Year {
+  fill: base.$svg-base-color;
+  font-size: base.$svg-year-fontsize;
+}

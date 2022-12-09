@@ -1,0 +1,6 @@
+@use "./../base";
+
+.Month {
+  fill: base.$svg-base-color;
+  font-size: base.$svg-month-fontsize;
+}

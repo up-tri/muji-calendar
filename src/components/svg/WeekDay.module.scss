@@ -1,0 +1,12 @@
+@use "./../base";
+
+.WeekDay {
+  font-size: base.$svg-weekday-fontsize;
+}
+.WeekDay--holiday {
+  fill: base.$svg-holidayHeader-color;
+}
+
+.WeekDay--workday {
+  fill: base.$svg-base-color;
+}

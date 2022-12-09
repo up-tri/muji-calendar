@@ -2,10 +2,9 @@ import React from "react";
 import styles from "./OldMonth.module.scss";
 
 type Props = {
-  className: string;
   children?: React.ReactNode;
 };
-export const OldMonth: React.FC<Props> = ({ children, className }) => (
+export const OldMonth: React.FC<Props> = ({ children }) => (
   <text
     x='585.4'
     y='100.8893'

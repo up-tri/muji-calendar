@@ -1,0 +1,6 @@
+@use "./../base";
+
+.Holiday {
+  font-size: base.$svg-label-fontsize;
+  fill: base.$svg-label-color;
+}

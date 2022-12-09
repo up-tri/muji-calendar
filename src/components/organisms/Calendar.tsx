@@ -1,11 +1,13 @@
-import classNames from "classnames";
 import React from "react";
-import { Day, Months } from "../../lib/month";
+import { Day } from "../../lib/types/Day";
+import { Months } from "../../lib/types/Month";
+import { SvgDate } from "../svg/Date";
 import { Frame } from "../svg/Frame";
+import { Group } from "../svg/Group";
+import { SvgHoliday } from "../svg/Holiday";
 import { Month } from "../svg/Month";
 import { OldMonth } from "../svg/OldMonth";
 import { Year } from "../svg/Year";
-import styles from "./Calendar.module.scss";
 
 export type CalendarProps = {
   year: number;
@@ -21,13 +23,15 @@ export const Calendar: React.FC<CalendarProps> = ({
 }) => {
   return (
     <Frame>
-      <Year className={classNames("weight--thin", styles.year)}>{year}</Year>
-      <Month className={classNames("weight--normal", styles.month)}>
-        {month}
-      </Month>
-      <OldMonth className={classNames("weight--thin", styles.oldMonth)}>
-        {oldMonth}
-      </OldMonth>
+      <Year>{year}</Year>
+      <Month>{month}</Month>
+      <OldMonth>{oldMonth}</OldMonth>
+      {dates.map((date, index) => (
+        <Group key={index}>
+          <SvgHoliday date={date} />
+          <SvgDate date={date} />
+        </Group>
+      ))}
     </Frame>
   );
 };

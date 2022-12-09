@@ -1,3 +1,6 @@
+@use "./../base";
 .OldMonth {
+  fill: base.$svg-base-color;
+  font-size: base.$svg-oldmonth-fontsize;
   text-align: right;
 }

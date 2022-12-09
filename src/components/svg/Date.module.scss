@@ -1,9 +1,14 @@
-@use "./../base.scss";
+@use "./../base";
 
-.Date--holiday {
-  fill: $svg-holiday-color;
-}
+.Date {
+  font-size: base.$svg-date-fontsize;
+  text-align: right;
 
-.Date--workday {
-  fill: $svg-base-color;
+  &--holiday {
+    fill: base.$svg-holiday-color;
+  }
+
+  &--workday {
+    fill: base.$svg-base-color;
+  }
 }
