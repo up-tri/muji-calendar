@@ -11,3 +11,18 @@ $svg-oldmonth-fontsize: 25px;
 $svg-weekday-fontsize: 19px;
 $svg-label-fontsize: 12px;
 $svg-date-fontsize: 25px;
+
+@mixin text-thin {
+  font-family: "M PLUS 1p";
+  font-weight: 200;
+}
+
+@mixin text-normal {
+  font-family: "M PLUS 1p";
+  font-weight: 300;
+}
+
+@mixin text-bold {
+  font-family: "M PLUS 1p";
+  font-weight: 500;
+}

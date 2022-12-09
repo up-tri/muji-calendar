@@ -1,6 +1,7 @@
 @use "./../base";
 
 .Date {
+  @include base.text-normal;
   font-size: base.$svg-date-fontsize;
   text-align: right;
 

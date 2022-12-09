@@ -1,6 +1,7 @@
 @use "./../base";
 
 .WeekDay {
+  @include base.text-normal;
   font-size: base.$svg-weekday-fontsize;
 }
 .WeekDay--holiday {
