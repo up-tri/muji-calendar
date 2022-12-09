@@ -81,7 +81,7 @@ export default function Home() {
           <Card variant='filled'>
             <CardBody>
               <Text>生成する「年」を半角数字で入力してください。</Text>
-              <Text fontSize='sm'>※2022年・2023年に対応しています。</Text>
+              <Text fontSize='sm'>※祝日は2023年までに対応しています。</Text>
             </CardBody>
           </Card>
         </Box>
