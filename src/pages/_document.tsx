@@ -9,7 +9,7 @@ class MyDocument extends Document {
           <link
             rel='preconnect'
             href='https://fonts.gstatic.com'
-            crossOrigin='true'
+            crossOrigin='anonymous'
           />
           <link
             href='https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&family=M+PLUS+1p:wght@300;500&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap'
