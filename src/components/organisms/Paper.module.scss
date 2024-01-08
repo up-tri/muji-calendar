@@ -6,14 +6,19 @@
   max-height: 100%;
   aspect-ratio: 210 / 297;
   border: 1px solid #000;
+  overflow: hidden;
 
   @media print {
-    margin: unset;
-    width: unset;
-    max-width: unset;
-    height: unset;
-    max-height: unset;
-    aspect-ratio: unset;
-    border: unset;
+    max-width: unset !important;
+    max-height: unset !important;
+    border: unset !important;
+  }
+
+  &--yoko {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: calc(297mm - 50px);
+    height: calc(210mm - 50px);
+    aspect-ratio: 297/210;
   }
 }

@@ -1,10 +1,19 @@
+import classNames from "classnames";
 import React from "react";
 import styles from "./Paper.module.scss";
 
 type Props = {
+  isTate: boolean;
   children?: React.ReactNode;
 };
 
 export const Paper: React.FC<Props> = (props) => (
-  <div className={styles.Paper}>{props.children}</div>
+  <div
+    className={classNames({
+      [styles.Paper]: true,
+      [styles["Paper--yoko"]]: !props.isTate,
+    })}
+  >
+    {props.children}
+  </div>
 );
