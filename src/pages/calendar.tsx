@@ -10,11 +10,13 @@ import { getYear } from "../lib/year";
 export default function CalendarPage() {
   const router = useRouter();
 
-  const { year, months } = router.query;
+  const { year, months, dir } = router.query;
 
   if (!year) {
     return <p>レンダリング中...</p>;
   }
+
+  const isTate = dir === "tate";
 
   const needMonths = (() => {
     if (months === undefined) return defaultMonths;
@@ -52,10 +54,12 @@ export default function CalendarPage() {
         />
       </PreviewNote>
       {yearTables.months.map((month, idx) => (
-        <Paper key={idx}>
+        <Paper key={idx} isTate={isTate}>
           <Calendar
+            isTate={isTate}
             year={yearAsNumber}
             month={month.month}
+            weekDays={month.header}
             oldMonth={`${getOldMonth(month.month).en}（${
               getOldMonth(month.month).ja
             }）`}

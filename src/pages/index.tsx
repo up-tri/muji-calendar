@@ -10,8 +10,12 @@ import {
   Checkbox,
   CheckboxGroup,
   Container,
+  Divider,
   Input,
+  Radio,
+  RadioGroup,
   SimpleGrid,
+  Stack,
   Text,
   Tooltip,
 } from "@chakra-ui/react";
@@ -24,7 +28,11 @@ import { months } from "../lib/types/Month";
 
 const defaultMonths = months.map((v) => `${v}`);
 
-const makeNextPath = (year: number | undefined, months: string[]): string => {
+const makeNextPath = (
+  year: number | undefined,
+  months: string[],
+  isTate: boolean
+): string => {
   if (!year) {
     return "/";
   }
@@ -32,7 +40,7 @@ const makeNextPath = (year: number | undefined, months: string[]): string => {
   const paramMonths = [0, 12].includes(months.length)
     ? ""
     : `&months=${months.sort((a, b) => parseInt(a) - parseInt(b)).join(",")}`;
-  return `/calendar?year=${year}${paramMonths}`;
+  return `/calendar?dir=${isTate ? "tate" : "yoko"}&year=${year}${paramMonths}`;
 };
 
 const buttonDisabled = (year: number | undefined, months: string[]): boolean =>
@@ -60,6 +68,7 @@ export default function Home() {
   const [year, setYear] = useState<number | undefined>(undefined);
   const [months, setMonths] = useState<string[]>(defaultMonths);
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
+  const [tate, setTate] = useState(true);
 
   useEffect(() => {
     checkError(year, months, setErrorMessages);
@@ -121,7 +130,7 @@ export default function Home() {
               size='lg'
               disabled={buttonDisabled(year, months)}
               onClick={() => {
-                router.push(makeNextPath(year, months), undefined, {});
+                router.push(makeNextPath(year, months, tate), undefined, {});
               }}
             >
               <span style={{ verticalAlign: "middle" }}>生成する！</span>
@@ -129,70 +138,99 @@ export default function Home() {
           </Tooltip>
           <Card marginY='5' variant='outline'>
             <CardBody>
-              <Text fontSize='xl' fontWeight='bold'>
-                <span style={{ verticalAlign: "middle" }}>生成する月</span>
-                <Button
-                  marginLeft='8px'
-                  colorScheme='blue'
-                  size='sm'
-                  onClick={() => {
-                    setMonths(defaultMonths);
-                    // checkError(year, months, setErrorMessages);
-                  }}
-                >
-                  全選択
-                </Button>
-                <Button
-                  marginLeft='8px'
-                  colorScheme='blue'
-                  variant='outline'
-                  size='sm'
-                  onClick={() => {
-                    setMonths([]);
-                    // checkError(year, months, setErrorMessages);
-                  }}
-                >
-                  全解除
-                </Button>
-              </Text>
-              <Text marginTop='3' size='sm'>
-                チェック
-                <CheckIcon
-                  style={{
-                    width: "var(--chakra-sizes-4)",
-                    height: " var(--chakra-sizes-4)",
-                    margin: "0 4px 3px",
-                    border: "2px solid var(--chakra-colors-teal-500)",
-                    borderRadius: "var(--chakra-radii-sm);",
-                    backgroundColor: "var(--chakra-colors-teal-500)",
-                    color: "var(--chakra-colors-chakra-border-color)",
-                  }}
-                />
-                を入れた月が生成されます。
-              </Text>
-              <CheckboxGroup
-                value={months}
-                colorScheme='teal'
-                onChange={(values: string[]) => {
-                  setMonths(values);
-                  checkError(year, months, setErrorMessages);
-                }}
-              >
-                <SimpleGrid marginTop='5' minChildWidth='60px' spacing='10px'>
-                  <Checkbox value='1'>1月</Checkbox>
-                  <Checkbox value='2'>2月</Checkbox>
-                  <Checkbox value='3'>3月</Checkbox>
-                  <Checkbox value='4'>4月</Checkbox>
-                  <Checkbox value='5'>5月</Checkbox>
-                  <Checkbox value='6'>6月</Checkbox>
-                  <Checkbox value='7'>7月</Checkbox>
-                  <Checkbox value='8'>8月</Checkbox>
-                  <Checkbox value='9'>9月</Checkbox>
-                  <Checkbox value='10'>10月</Checkbox>
-                  <Checkbox value='11'>11月</Checkbox>
-                  <Checkbox value='12'>12月</Checkbox>
-                </SimpleGrid>
-              </CheckboxGroup>
+              <Stack direction='column' spacing={3} divider={<Divider />}>
+                <Box>
+                  <Text fontSize='xl' fontWeight='bold'>
+                    <span style={{ verticalAlign: "middle" }}>生成する月</span>
+                    <Button
+                      marginLeft='8px'
+                      colorScheme='blue'
+                      size='sm'
+                      onClick={() => {
+                        setMonths(defaultMonths);
+                        // checkError(year, months, setErrorMessages);
+                      }}
+                    >
+                      全選択
+                    </Button>
+                    <Button
+                      marginLeft='8px'
+                      colorScheme='blue'
+                      variant='outline'
+                      size='sm'
+                      onClick={() => {
+                        setMonths([]);
+                        // checkError(year, months, setErrorMessages);
+                      }}
+                    >
+                      全解除
+                    </Button>
+                  </Text>
+                  <Text marginTop='3' size='sm'>
+                    チェック
+                    <CheckIcon
+                      style={{
+                        width: "var(--chakra-sizes-4)",
+                        height: " var(--chakra-sizes-4)",
+                        margin: "0 4px 3px",
+                        border: "2px solid var(--chakra-colors-teal-500)",
+                        borderRadius: "var(--chakra-radii-sm);",
+                        backgroundColor: "var(--chakra-colors-teal-500)",
+                        color: "var(--chakra-colors-chakra-border-color)",
+                      }}
+                    />
+                    を入れた月が生成されます。
+                  </Text>
+                  <CheckboxGroup
+                    value={months}
+                    colorScheme='teal'
+                    onChange={(values: string[]) => {
+                      setMonths(values);
+                      checkError(year, months, setErrorMessages);
+                    }}
+                  >
+                    <SimpleGrid
+                      marginTop='5'
+                      minChildWidth='60px'
+                      spacing='10px'
+                    >
+                      <Checkbox value='1'>1月</Checkbox>
+                      <Checkbox value='2'>2月</Checkbox>
+                      <Checkbox value='3'>3月</Checkbox>
+                      <Checkbox value='4'>4月</Checkbox>
+                      <Checkbox value='5'>5月</Checkbox>
+                      <Checkbox value='6'>6月</Checkbox>
+                      <Checkbox value='7'>7月</Checkbox>
+                      <Checkbox value='8'>8月</Checkbox>
+                      <Checkbox value='9'>9月</Checkbox>
+                      <Checkbox value='10'>10月</Checkbox>
+                      <Checkbox value='11'>11月</Checkbox>
+                      <Checkbox value='12'>12月</Checkbox>
+                    </SimpleGrid>
+                  </CheckboxGroup>
+                </Box>
+                <Box>
+                  <Text fontSize='xl' fontWeight='bold'>
+                    <span style={{ verticalAlign: "middle" }}>
+                      カレンダーの向き
+                    </span>
+                  </Text>
+                  <RadioGroup
+                    value={tate ? "tate" : "yoko"}
+                    colorScheme='teal'
+                    onChange={(value: string) => {
+                      setTate(value === "tate");
+                    }}
+                  >
+                    <Stack marginTop='5' spacing='10px'>
+                      <Radio defaultChecked value='tate'>
+                        縦向き
+                      </Radio>
+                      <Radio value='yoko'>横向き</Radio>
+                    </Stack>
+                  </RadioGroup>
+                </Box>
+              </Stack>
             </CardBody>
           </Card>
         </Box>

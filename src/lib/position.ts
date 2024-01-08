@@ -1,3 +1,16 @@
+export const yearPosition = {
+  x: 13.4457,
+  y: 100.8893,
+};
+export const monthPosition = {
+  x: 135.5832,
+  y: 100.8893,
+};
+export const oldMonthPosition = {
+  x: 585.4,
+  y: 100.8893,
+};
+
 export const weekDayPositions = [
   { x: 51.6879, y: 137.785 },
   { x: 128.3036, y: 137.785 },
